@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knife Studios</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #ffffff;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: #1e1e1e;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            letter-spacing: 1px;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            background-color: #282828;
+            padding: 10px 0;
+        }
+
+        .nav a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 20px;
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+
+        .nav a:hover {
+            background-color: #444444;
+        }
+
+        .content {
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            text-align: center;
+            flex: 1;
+            position: relative;
+        }
+
+        .content.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .content p {
+            color: #555555;
+            font-size: 1.2em;
+            max-width: 600px;
+            margin: 20px 0;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 1.2em;
+            color: #ffffff;
+            background-color: #7289da;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 20px;
+        }
+
+        .button:hover {
+            background-color: #5b6eae;
+            transform: scale(1.05);
+        }
+
+        .button:active {
+            transform: scale(0.95);
+        }
+
+        .section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .section.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background-color: #1e1e1e;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px 0;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav a');
+            const sections = document.querySelectorAll('.section');
+            const content = document.querySelector('.content');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+
+                    const target = this.getAttribute('href').substring(1); // remove #
+
+                    // Ocultar el contenido inicial
+                    content.classList.add('hidden');
+
+                    // Mostrar la sección correspondiente
+                    sections.forEach(section => {
+                        if (section.id === target) {
+                            section.classList.add('active');
+                        } else {
+                            section.classList.remove('active');
+                        }
+                    });
+
+                    // Mostrar el contenido de la sección después de una pequeña pausa
+                    setTimeout(function() {
+                        content.classList.remove('hidden');
+                    }, 500); // 500ms es el mismo tiempo que la transición de opacidad
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="header">
+        <img src="knife.jpg" alt="Knife Studios">
+        <h1>Knife Studios</h1>
+    </div>
+    <div class="nav">
+        <a href="#inicio">Inicio</a>
+    </div>
+    <div class="content" id="inicio">
+        <img src="knifegf.gif" alt="Knife Studios GIF" style="width: 100%; max-width: 600px;">
+        <p>Únete a nuestro servidor de Discord para formar parte de nuestra comunidad. ¡Esperamos verte allí!</p>
+        <a href="https://discord.gg/8waGR9GrZG" class="button">Discord</a>
+    </div>
+    <div class="section" id="sobre-nosotros">
+        <h2>Sobre Nosotros</h2>
+        <p>Knife Studios es una comunidad dedicada a los amantes de los videojuegos. Nos esforzamos por crear un ambiente acogedor y divertido para todos nuestros miembros.</p>
+    </div>
+    <div class="section" id="contacto">
+        <h2>Contacto</h2>
+        <p>Para cualquier consulta, no dudes en ponerte en contacto con nosotros a través de nuestro servidor de Discord o enviando un correo electrónico a contact@knifestudios.com.</p>
+    </div>
+    <footer>
+        &copy; 2024 Knife Studios. Todos los derechos reservados.
+    </footer>
+</body>
+</html>
